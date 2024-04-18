@@ -1,12 +1,16 @@
 import { NativeModules, Platform } from 'react-native';
+import type {
+  API,
+  SunmiAPI,
+  PlugpagAPI,
+  PlugPagEventListener,
+  TransactionTypes,
+} from './@types';
+import { IOS_ERROR, LINKING_ERROR } from './errorMessages';
 
-const LINKING_ERROR =
-  `The package 'react-native-plugpag' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+if (Platform.OS === 'ios') throw new Error(IOS_ERROR);
 
-const Plugpag = NativeModules.Plugpag
+export const api: API = NativeModules.Plugpag
   ? NativeModules.Plugpag
   : new Proxy(
       {},
@@ -17,6 +21,45 @@ const Plugpag = NativeModules.Plugpag
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return Plugpag.multiply(a, b);
-}
+const readRfidCardInSunmi = () => api.readRfidCardInSunmi();
+const cancelRfidCardSearchInSunmi = () => api.cancelRfidCardSearchInSunmi();
+const initPlugpag = (activationCode: string) => api.initPlugpag(activationCode);
+const destroyPlugpag = () => api.destroyPlugpag();
+const pay = (
+  rechargeValue: number,
+  transactionType: TransactionTypes,
+  eventListener: PlugPagEventListener
+) => api.pay(rechargeValue, transactionType, eventListener);
+const abortPayment = () => api.abortPayment();
+const printEstablishmentReceipt = () => api.printEstablishmentReceipt();
+const printClientReceipt = () => api.printClientReceipt();
+const customDialogClientViaPrinter = () => api.customDialogClientViaPrinter();
+
+const Sunmi: SunmiAPI = {
+  readRfidCardInSunmi,
+  cancelRfidCardSearchInSunmi,
+};
+
+const Plugpag: PlugpagAPI = {
+  initPlugpag,
+  destroyPlugpag,
+  abortPayment,
+  printEstablishmentReceipt,
+  printClientReceipt,
+  customDialogClientViaPrinter,
+  pay,
+};
+
+export {
+  Sunmi,
+  readRfidCardInSunmi,
+  cancelRfidCardSearchInSunmi,
+  Plugpag,
+  initPlugpag,
+  destroyPlugpag,
+  abortPayment,
+  printEstablishmentReceipt,
+  printClientReceipt,
+  customDialogClientViaPrinter,
+  pay,
+};

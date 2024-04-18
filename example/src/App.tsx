@@ -1,18 +1,38 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-plugpag';
+import { StyleSheet, View, Text, Button } from 'react-native';
+import {
+  readRfidCardInSunmi,
+  cancelRfidCardSearchInSunmi,
+} from 'react-native-plugpag';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [rfid, setRfid] = React.useState<string>('');
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  const scanRfid = async () => {
+    try {
+      setRfid('Waiting card...');
+      setRfid(await readRfidCardInSunmi());
+    } catch (e) {
+      setRfid('Error!');
+      console.error(e);
+    }
+  };
+
+  const cancelScan = () => {
+    try {
+      cancelRfidCardSearchInSunmi();
+      setRfid('');
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text style={styles.text}>RFID found: '{rfid}'</Text>
+      <Button title="Search RFID" onPress={scanRfid} />
+      <Button title="Cancel search" onPress={cancelScan} />
     </View>
   );
 }
@@ -23,9 +43,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  text: {
+    fontSize: 16,
+    marginBottom: 20,
   },
 });
