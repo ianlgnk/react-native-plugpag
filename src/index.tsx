@@ -5,6 +5,8 @@ import type {
   PlugpagAPI,
   PlugPagEventListener,
   TransactionTypes,
+  PlugPagEventData,
+  PlugPagTransactionResult,
 } from './@types';
 import { IOS_ERROR, LINKING_ERROR } from './errorMessages';
 
@@ -62,4 +64,25 @@ export {
   printClientReceipt,
   customDialogClientViaPrinter,
   pay,
+};
+
+export default {
+  Sunmi,
+  readRfidCardInSunmi,
+  cancelRfidCardSearchInSunmi,
+  Plugpag,
+  initPlugpag,
+  destroyPlugpag,
+  abortPayment,
+  printEstablishmentReceipt,
+  printClientReceipt,
+  customDialogClientViaPrinter,
+  pay,
+};
+
+export type {
+  PlugPagEventListener,
+  PlugPagEventData,
+  PlugPagTransactionResult,
+  TransactionTypes,
 };
