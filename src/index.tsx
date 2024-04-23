@@ -35,7 +35,8 @@ const pay = (
 const abortPayment = () => api.abortPayment();
 const printEstablishmentReceipt = () => api.printEstablishmentReceipt();
 const printClientReceipt = () => api.printClientReceipt();
-const customDialogClientViaPrinter = () => api.customDialogClientViaPrinter();
+const customDialogClientViaPrinter = (color: string) =>
+  api.customDialogClientViaPrinter(color);
 
 const Sunmi: SunmiAPI = {
   readRfidCardInSunmi,

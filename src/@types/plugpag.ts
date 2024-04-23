@@ -9,7 +9,7 @@ export interface PlugpagAPI {
   abortPayment: () => void;
   printEstablishmentReceipt: () => void;
   printClientReceipt: () => void;
-  customDialogClientViaPrinter: () => void;
+  customDialogClientViaPrinter: (color: string) => void;
 }
 
 export type TransactionTypes = 'debitCard' | 'creditCard' | 'pix' | 'voucher';
