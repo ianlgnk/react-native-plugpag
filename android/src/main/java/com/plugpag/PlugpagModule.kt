@@ -1,11 +1,13 @@
 package com.plugpag
 
-import br.com.uol.pagseguro.plugpagservice.wrapper.PlugPagEventListener
+import br.com.uol.pagseguro.plugpagservice.wrapper.PlugPagEventData
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
+import com.facebook.react.bridge.ReadableMap
 import com.plugpag.sunmi.SunmiRfidReader
+import com.plugpag.utils.PlugpagUtils
 import com.plugpag.utils.SunmiUtils
 
 class PlugpagModule(
@@ -60,14 +62,13 @@ class PlugpagModule(
 
   @ReactMethod
   fun pay(
-    rechargeValue: Int,
+    rechargeValue: String,
     transactionType: String,
-    eventListener: PlugPagEventListener,
     promise: Promise
   ) {
     try {
       checkPlugpag()
-      plugpagImpl!!.pay(rechargeValue, transactionType, eventListener, promise)
+      plugpagImpl!!.pay(rechargeValue, transactionType, promise)
     } catch (e: Exception) {
      e.printStackTrace()
      promise.reject(e)
@@ -96,5 +97,11 @@ class PlugpagModule(
   fun customDialogClientViaPrinter(color: String) {
     checkPlugpag()
     plugpagImpl?.customDialogClientViaPrinter(color)
+  }
+
+  @ReactMethod(isBlockingSynchronousMethod = true)
+  fun resolveTransactionEvent(data: ReadableMap): String {
+    val plugPagEventData = PlugPagEventData(data.getInt("eventCode"))
+    return PlugpagUtils.resolveTransactionEvent(plugPagEventData)
   }
 }

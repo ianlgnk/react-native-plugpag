@@ -1,12 +1,13 @@
 import { NativeModules, Platform } from 'react-native';
-import type {
-  API,
-  SunmiAPI,
-  PlugpagAPI,
-  PlugPagEventListener,
-  TransactionTypes,
-  PlugPagEventData,
-  PlugPagTransactionResult,
+import {
+  type API,
+  type SunmiAPI,
+  type PlugpagAPI,
+  type TransactionTypes,
+  type PlugPagEventData,
+  type PlugPagTransactionResult,
+  PlugPagEvent,
+  PlugPagResult,
 } from './@types';
 import { IOS_ERROR, LINKING_ERROR } from './errorMessages';
 
@@ -27,16 +28,15 @@ const readRfidCardInSunmi = () => api.readRfidCardInSunmi();
 const cancelRfidCardSearchInSunmi = () => api.cancelRfidCardSearchInSunmi();
 const initPlugpag = (activationCode: string) => api.initPlugpag(activationCode);
 const destroyPlugpag = () => api.destroyPlugpag();
-const pay = (
-  rechargeValue: number,
-  transactionType: TransactionTypes,
-  eventListener: PlugPagEventListener
-) => api.pay(rechargeValue, transactionType, eventListener);
+const pay = (rechargeValue: string, transactionType: TransactionTypes) =>
+  api.pay(rechargeValue, transactionType);
 const abortPayment = () => api.abortPayment();
 const printEstablishmentReceipt = () => api.printEstablishmentReceipt();
 const printClientReceipt = () => api.printClientReceipt();
 const customDialogClientViaPrinter = (color: string) =>
   api.customDialogClientViaPrinter(color);
+const resolveTransactionEvent = (data: PlugPagEventData): string =>
+  api.resolveTransactionEvent(data);
 
 const Sunmi: SunmiAPI = {
   readRfidCardInSunmi,
@@ -51,6 +51,7 @@ const Plugpag: PlugpagAPI = {
   printClientReceipt,
   customDialogClientViaPrinter,
   pay,
+  resolveTransactionEvent,
 };
 
 export {
@@ -65,6 +66,9 @@ export {
   printClientReceipt,
   customDialogClientViaPrinter,
   pay,
+  resolveTransactionEvent,
+  PlugPagEvent,
+  PlugPagResult,
 };
 
 export default {
@@ -79,11 +83,8 @@ export default {
   printClientReceipt,
   customDialogClientViaPrinter,
   pay,
+  PlugPagEvent,
+  PlugPagResult,
 };
 
-export type {
-  PlugPagEventListener,
-  PlugPagEventData,
-  PlugPagTransactionResult,
-  TransactionTypes,
-};
+export type { PlugPagEventData, PlugPagTransactionResult, TransactionTypes };
