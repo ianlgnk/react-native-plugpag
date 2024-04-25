@@ -25,7 +25,7 @@ It is configured to use the local version of the library, so any changes you mak
 
 If you want to use Android Studio to edit the native code, you can open the `example/android` directory respectively in those editors.
 
-To edit the Java or Kotlin files, open `example/android` in Android studio and find the source files at `react-native-plugpag` under `Android`.
+To edit the Java or Kotlin files, open `example/android` in Android studio and find the source files at `react-native-sunmi-plugpag-wrapper` under `Android`.
 
 You can use various commands from the root directory to work with the project.
 

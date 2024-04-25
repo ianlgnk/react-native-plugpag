@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 import {
   readRfidCardInSunmi,
   cancelRfidCardSearchInSunmi,
-} from 'react-native-plugpag';
+} from 'react-native-sunmi-plugpag-wrapper';
 
 export default function App() {
   const [rfid, setRfid] = React.useState<string>('');

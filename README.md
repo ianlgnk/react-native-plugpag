@@ -1,17 +1,17 @@
-# react-native-plugpag
+# react-native-sunmi-plugpag-wrapper
 
-Plugpag wrapper for React Native
+Sunmi RFID reader and Plugpag wrapper for React Native
 
 ## Installation
 
 ```sh
-npm install react-native-plugpag
+npm install react-native-sunmi-plugpag-wrapper
 ```
 
 ## Usage
 
 ```js
-import { multiply } from 'react-native-plugpag';
+import { multiply } from 'react-native-sunmi-plugpag-wrapper';
 
 // ...
 

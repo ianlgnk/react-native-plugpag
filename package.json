@@ -1,7 +1,7 @@
 {
-  "name": "react-native-plugpag",
+  "name": "react-native-sunmi-plugpag-wrapper",
   "version": "0.1.0",
-  "description": "Plugpag wrapper for React Native",
+  "description": "Sunmi RFID reader and Plugpag wrapper for React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -35,14 +35,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ianlgnk/react-native-plugpag.git"
+    "url": "git+https://github.com/ianlgnk/react-native-sunmi-plugpag-wrapper.git"
   },
   "author": "Ian Langkammer Batista <ianlgnk@gmail.com> (https://github.com/ianlgnk)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ianlgnk/react-native-plugpag/issues"
+    "url": "https://github.com/ianlgnk/react-native-sunmi-plugpag-wrapper/issues"
   },
-  "homepage": "https://github.com/ianlgnk/react-native-plugpag#readme",
+  "homepage": "https://github.com/ianlgnk/react-native-sunmi-plugpag-wrapper#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

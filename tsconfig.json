@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-plugpag": ["./src/index"]
+      "react-native-sunmi-plugpag-wrapper": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
