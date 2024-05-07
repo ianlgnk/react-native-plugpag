@@ -12,7 +12,13 @@ export interface PlugpagAPI {
   resolveTransactionEvent: (data: PlugPagEventData) => string;
 }
 
-export type TransactionTypes = 'debitCard' | 'creditCard' | 'pix' | 'voucher';
+export type TransactionTypes =
+  | 'debitCard'
+  | 'creditCard'
+  | 'pix'
+  | 'voucher'
+  | 'money'
+  | 'bonus';
 
 export interface PlugPagEventData {
   customMessage?: string;
