@@ -94,6 +94,8 @@ dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation "com.sunmi:PayLib-release:2.0.07"
+  // implementation fileTree(dir: "libs", include: ["*.aar"])
+  compileOnly('./libs/pagseguro-sdk-plugpagservicewrapper-1.28.2.aar')
 }
 
 api(name:'pagseguro-sdk-plugpagservicewrapper-1.28.2', ext:'aar')
