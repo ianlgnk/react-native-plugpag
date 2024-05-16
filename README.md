@@ -8,10 +8,23 @@ Sunmi RFID reader and Plugpag wrapper for React Native
 npm install react-native-sunmi-plugpag-wrapper
 ```
 
-    OR
+OR
 
 ```sh
 yarn add react-native-sunmi-plugpag-wrapper
+```
+
+Now, you just need to add that code line below in your build.gradle in your react native application
+
+```
+allprojects {
+  repositories {
+    ...
+    maven {
+      url 'https://github.com/pagseguro/PlugPagServiceWrapper/raw/master'
+    }
+  }
+}
 ```
 
 ## Usage
